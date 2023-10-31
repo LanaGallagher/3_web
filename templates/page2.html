@@ -2,13 +2,32 @@
 
 {% block main %}
 <div>
-    <h3>Page 2</h3>
+    <h3>Генератор пароли</h3>
 
-    <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione officia sit numquam distinctio?
-    </p>
+  <form method="post">
+    <div class="field"> 
+        <!-- Поля ввода логина и пароля -->
+        <label for="">Логин:</label>
+        <input type="password" id="p" name="log">
+        <label for="">Пароль:</label>
+        <input type="password" id="p" name="pwd">
+    </div>
+    <div class="field"> 
+        <label for="">Соль:</label>
+        <input type="password" id="s" name="salt">
+    </div>
+    <div class="field"> 
+        <label for="">Количество символов:</label>
+        <input type="password" id="n" name="num">
+    </div>
 
+    <!-- Кнопка -->
+    <button type="submit">Отправить</button>
+  </form>
 
+  <div class="result">
+    {{ data }}
+  </div>
 </div>
 
 {% endblock %}
