@@ -19,7 +19,7 @@ def page_2():
             result = pwdGenerator(password, salt, num)
         else:
             result = ""
-            
+
     return render_template("page2.html", data=result)
 
 @app.route("/page3")
