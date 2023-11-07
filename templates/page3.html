@@ -2,16 +2,27 @@
 
 {% block main %}
 <div>
-    <h3>Page 3</h3>
-
-    <p>
-        Lorem ipsum dolor sit amet.
-    </p>
-    <p id="page3p2">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-    </p>
-
-
+    <h3>Данные из БД</h3>
+    <!-- таблица -->
+    <table>
+        <!-- строка заголовка столбцов -->
+        <tr>
+            <th>№</th>
+            <th>Пароль</th>
+            <th>Соль</th>
+            <th>Кол-во столбцов</th>
+            <th>Результат</th>
+        </tr>
+        <!-- Строки данных -->
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0]}}</td>
+            <td>{{ row[1]}}</td>
+            <td>{{ row[2]}}</td>
+            <td>{{ row[3]}}</td>
+            <td>{{ row[4]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
-
 {% endblock %}

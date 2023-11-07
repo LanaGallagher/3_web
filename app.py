@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request
 from pwdGen import pwdGenerator
+import db
+
+DB_PATH = "database/site.db"
 
 app = Flask(__name__)
 
@@ -15,8 +18,13 @@ def page_2():
         salt = request.form.get("salt")
         num = request.form.get("num")
 
-        if password != None and salt != None and num != None:
+        if password != None and salt != "" and num != "":
             result = pwdGenerator(password, salt, num)
+            if num.isnumeric():
+                db.write_db(DB_PATH, [(password, salt, int(num), result)])
+            else:
+                db.write_db(DB_PATH, [(password, salt, len(result), result)])
+        
         else:
             result = ""
 
@@ -24,7 +32,7 @@ def page_2():
 
 @app.route("/page3")
 def page_3(): 
-    return render_template("page3.html")
+    return render_template("page3.html", data = db.read_db(DB_PATH))
 
 @app.route("/test")
 def page_4():
@@ -33,4 +41,5 @@ def page_4():
     return render_template("test.html", v1=val_1, p2=val_2)
 
 if __name__ == "__main__":
+    db.create_db(DB_PATH)
     app.run(debug=True)
