@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from pwdGen import pwdGenerator
 import db
 
-DB_PATH = "database/site.db"
+DB_PATH = "/home/LanaGallagher13/3_web/database/site.db" #"database/site.db"
 
 app = Flask(__name__)
 
@@ -42,4 +42,4 @@ def page_4():
 
 if __name__ == "__main__":
     db.create_db(DB_PATH)
-    app.run(debug=True)
+    app.run() #debug=True)
